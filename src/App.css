@@ -159,6 +159,10 @@ img {
   margin-left: var(--mb-0-5);
 }
 
+.button--flex {
+  display: inline-flex;
+  align-items: center;
+}
 /* For large devices */
 @media screen and (max-width: 992px) {
     
