@@ -84,6 +84,11 @@ body {
   color: var(--text-color);
 }
 
+h1, h2, h3 {
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+}
+
 /* For large devices */
 @media screen and (max-width: 992px) {
     
