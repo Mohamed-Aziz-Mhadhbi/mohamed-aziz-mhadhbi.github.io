@@ -67,6 +67,9 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
 /* For large devices */
 @media screen and (max-width: 992px) {
