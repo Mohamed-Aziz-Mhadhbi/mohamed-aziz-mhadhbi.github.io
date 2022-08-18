@@ -118,6 +118,12 @@ img {
   color: var(--title-color);
 }
 
+.section__subtitle {
+  display: block;
+  font-size: var(--small-font-size);
+  margin-bottom: 4rem;
+}
+
 /* For large devices */
 @media screen and (max-width: 992px) {
     
