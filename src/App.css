@@ -141,6 +141,7 @@ img {
   gap: 1.5rem;
 }
 
+/* ============== BUTTONS ================*/
 /* For large devices */
 @media screen and (max-width: 992px) {
     
