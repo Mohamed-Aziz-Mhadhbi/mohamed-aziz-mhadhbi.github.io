@@ -71,6 +71,14 @@ html {
   scroll-behavior: smooth;
 }
 
+body,
+button,
+input,
+textarea {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+}
+
 /* For large devices */
 @media screen and (max-width: 992px) {
     
