@@ -103,6 +103,10 @@ button {
   outline: none;
 }
 
+img {
+  max-width: 100%;
+  height: auto;   
+} 
 
 /* For large devices */
 @media screen and (max-width: 992px) {
