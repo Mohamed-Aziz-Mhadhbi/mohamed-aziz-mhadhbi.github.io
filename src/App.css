@@ -26,42 +26,42 @@
   --smaller-font-size: 0.813rem;
   --tiny-font-size: 0.625rem;
 
-   /*=========== Font Weight ================*/
-   --font-normal: 400;
-   --font-medium: 500;
-   --font-semi-bold: 600;
+  /*=========== Font Weight ================*/
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semi-bold: 600;
 
-   /*=========== Margenes bottom =========*/
-   --mb-0-25: 0.25rem;
-   --mb-0-5: 0.5rem;
-   --mb-0-75: 0.75rem;
-   --mb-1-: 1rem;
-   --mb-1-5: 1.5rem;
-   --mb-2: 2rem;
-   --mb-2-5: 2.5rem;
-   --mb-3: 3rem;
+  /*=========== Margenes bottom =========*/
+  --mb-0-25: 0.25rem;
+  --mb-0-5: 0.5rem;
+  --mb-0-75: 0.75rem;
+  --mb-1-: 1rem;
+  --mb-1-5: 1.5rem;
+  --mb-2: 2rem;
+  --mb-2-5: 2.5rem;
+  --mb-3: 3rem;
 
-   /*========= z index ==========*/
-   --z-tooltip: 10;
-   --z-fixed: 100;
-   --z-modal: 1000;
+  /*========= z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+  --z-modal: 1000;
 }
 
 /* Responsive typography*/
 @media screen and (max-width: 992px) {
   :root {
-      --big-font-size: 2.75rem;
-      --h1-font-size: 1.5rem;
-      --h2-font-size: 1.25rem;
-      --h3-font-size: 1rem;
-      --normal-font-size: 0.938rem;
-      --small-font-size: 0.813rem;
-      --smaller-font-size: 0.75rem;
+    --big-font-size: 2.75rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: 0.938rem;
+    --small-font-size: 0.813rem;
+    --smaller-font-size: 0.75rem;
   }
 }
 
 /* ============== BASE ================*/
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -75,8 +75,8 @@ body,
 button,
 input,
 textarea {
-    font-family: var(--body-font);
-    font-size: var(--normal-font-size);
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
 }
 
 body {
@@ -84,7 +84,9 @@ body {
   color: var(--text-color);
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   color: var(--title-color);
   font-weight: var(--font-semi-bold);
 }
@@ -94,7 +96,7 @@ ul {
 }
 
 a {
- text-decoration: none;
+  text-decoration: none;
 }
 
 button {
@@ -105,12 +107,12 @@ button {
 
 img {
   max-width: 100%;
-  height: auto;   
-} 
+  height: auto;
+}
 
 /* ============== REUSABLE CSS CLASSES ================*/
 .section {
-  padding: 6rem 0 2rem;    
+  padding: 6rem 0 2rem;
 }
 
 .section__title {
@@ -125,8 +127,8 @@ img {
 }
 
 .section__title,
-.section__subtitle{
-    text-align: center;
+.section__subtitle {
+  text-align: center;
 }
 
 /* ============== LAYOUT ================*/
@@ -147,7 +149,7 @@ img {
   background-color: var(--title-color);
   color: var(--container-color);
   padding: 1.25rem 2rem;
-  border-radius: 1rem;   
+  border-radius: 1rem;
   font-weight: var(--font-medium);
 }
 
@@ -167,19 +169,11 @@ img {
 
 /* For large devices */
 @media screen and (max-width: 992px) {
-    
+  .container {
+    margin-left: var(--mb-1-5);
+    margin-right: var(--mb-0-5);
+  }
 }
 
-/* for medium devices */
-@media screen and (max-width: 768px) {
-    
-}
 
-@media screen and (max-width: 576px) {
-    
-}
-
-/* For small devices */
-@media screen and (max-width: 350px) {
-    
-}
+@media screen and (max-width: 576px) {}
