@@ -5,6 +5,12 @@
     align-items: center;
 }
 
+.home__social {
+    display: grid;
+    grid-template-columns: max-content;
+    row-gap: 1rem;
+}
+
 .home__img {
     background: url(../../assets//profile.jpg);
     background-repeat: no-repeat;
