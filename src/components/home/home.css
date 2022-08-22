@@ -49,6 +49,11 @@
     top: 1rem;
 }
 
+.home__description {
+    max-width: 400px;
+    margin-bottom: var(--mb-3);
+}
+
 .home__img {
     background: url(../../assets//profile.jpg);
     background-repeat: no-repeat;
