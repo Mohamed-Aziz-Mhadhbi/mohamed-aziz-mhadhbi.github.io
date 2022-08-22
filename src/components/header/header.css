@@ -6,7 +6,7 @@
 .header {
     width: 100%;
     position: fixed;
-    top:0;
+    top: 0;
     left: 0;
     z-index: var(--z-fixed);
     background-color: var(--body-color);
@@ -73,14 +73,19 @@
 
     .nav__menu {
         position: fixed;
-        bottom: 0;
+        bottom: -100%;
         left: 0;
         width: 100%;
         background-color: var(--body-color);
         padding: 2rem 1.5rem 4rem;
-        box-shadow: 0 -1px 4px rgba(0, 0, 0 ,0.15);
+        box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.15);
         border-radius: 1.5rem 1.5rem 0 0;
         transition: .3s;
+    }
+
+    /* Show menu */
+    .show-menu {
+        bottom: 0;
     }
 
     .nav__list {
@@ -98,7 +103,7 @@
         right: 1.3rem;
         bottom: .5rem;
         font-size: 1.5rem;
-        cursor:pointer;
+        cursor: pointer;
         color: var(--title-color);
     }
 
@@ -106,9 +111,14 @@
         color: var(--title-color-dark);
     }
 
+    .nav__toggle {
+        font-size: 1.1rem;
+        cursor: pointer;
+    }
+
     .nav__icon,
     .nav__close,
-    .nave__toggle {
+    .nav__toggle {
         display: block;
     }
 }
@@ -116,5 +126,7 @@
 
 /* For small devices */
 @media screen and (max-width: 350px) {
-    
+    .nav__menus {
+        padding: 2rem 0.25rem 4rem;
+    }
 }
