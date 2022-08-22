@@ -83,7 +83,7 @@
         transition: .3s;
     }
 
-    /* Show menu */
+    /* Show Menu */
     .show-menu {
         bottom: 0;
     }
@@ -128,5 +128,9 @@
 @media screen and (max-width: 350px) {
     .nav__menu {
         padding: 2rem 0.25rem 4rem;
+    }
+
+    .nav__list {
+        column-gap: 0;
     }
 }
