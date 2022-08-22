@@ -16,6 +16,10 @@
     color: var(--title-color);
 }
 
+.home__social-icon:hover {
+    color: var(--title-color-dark);
+}
+
 .home__img {
     background: url(../../assets//profile.jpg);
     background-repeat: no-repeat;
