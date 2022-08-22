@@ -126,7 +126,7 @@
 
 /* For small devices */
 @media screen and (max-width: 350px) {
-    .nav__menus {
+    .nav__menu {
         padding: 2rem 0.25rem 4rem;
     }
 }
