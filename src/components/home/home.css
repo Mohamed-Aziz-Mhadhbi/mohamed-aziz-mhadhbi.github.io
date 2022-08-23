@@ -84,3 +84,7 @@
         border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
     }
 }
+
+.home__scroll  {
+    margin-left: 9.25rem;
+}
