@@ -143,6 +143,10 @@
         margin-bottom: var(--mb-2-5);
     }
 
+    .home__img {
+        width: 250px;
+        height: 250px;
+    }
   }
   
   /* For medium devices */
