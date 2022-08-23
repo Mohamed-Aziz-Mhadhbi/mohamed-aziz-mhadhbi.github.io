@@ -127,6 +127,11 @@
         width: 26px;
         height: 26px;
     }
+
+    .home__subtitle {
+        padding-left: 3.75rem;
+        margin-bottom: var(--mb-1);
+    }
   }
   
   /* For medium devices */
