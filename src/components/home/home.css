@@ -103,3 +103,9 @@
     }
 }
 
+.home__scorll-name {
+    color: var(--title-color);
+    font-weight: var(--font-medium);
+    margin-right: var(--mb-0-25);
+    margin-left: 2px;
+}
