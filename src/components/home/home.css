@@ -122,6 +122,11 @@
         grid-template-columns: 100px repeat(2, 1fr);
         column-gap: 1.25rem;
     }
+
+    .home__hand {
+        width: 26px;
+        height: 26px;
+    }
   }
   
   /* For medium devices */
