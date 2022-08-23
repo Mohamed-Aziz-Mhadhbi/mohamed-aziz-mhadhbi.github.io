@@ -114,3 +114,22 @@
     font-size: 1.25rem;
     color: var(--title-color);
 }
+
+/*=================== BREAKPOINTS ======================*/
+/* For large devices */
+@media screen and (max-width: 992px) {
+    .home__content {
+        grid-template-columns: 100px repeat(2, 1fr);
+        column-gap: 1.25rem;
+    }
+  }
+  
+  /* For medium devices */
+  @media screen and (max-width: 768px) {}
+  
+  @media screen and (max-width: 576px) {}
+  
+  /* For small devices */
+  @media screen and (max-width: 350px){
+   
+  }
