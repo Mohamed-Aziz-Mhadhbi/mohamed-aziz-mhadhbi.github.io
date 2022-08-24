@@ -9,3 +9,9 @@
     border-radius: 1.5rem;
     justify-self: center;
 }
+
+.about__info {
+    grid-template-columns: repeat(3, 140px);
+    gap: 0.5rem;
+    margin-bottom: var(--mb-2);
+}
