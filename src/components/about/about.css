@@ -29,3 +29,8 @@
     color: var(--title-color);
     margin-bottom: var(--mb-0-5);
 }
+
+.about__title {
+    font-size: var(--small-font-size);
+    font-weight: var(--font-medium);
+}
