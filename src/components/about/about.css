@@ -49,7 +49,7 @@
 /* For large devices */
 @media screen and (max-width: 992px) {
     .about__container {
-        grid-template-columns: 1rem;
+        grid-template-columns: 1fr;
         row-gap: 2.5rem;
     }
 
