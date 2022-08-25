@@ -53,7 +53,10 @@
 /*=================== BREAKPOINTS ======================*/
 /* For large devices */
   @media screen and (max-width: 992px) {  
-    
+    .skills__container {
+        grid-template-columns: max-content;
+        row-gap: 2rem;
+    }
   }
   
   /* For medium devices */
