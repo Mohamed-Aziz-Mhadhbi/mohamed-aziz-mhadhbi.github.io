@@ -48,6 +48,10 @@
 /*=================== BREAKPOINTS ======================*/
 /* For large devices */
 @media screen and (max-width: 992px) {
+    .about__container {
+        grid-template-columns: 1rem;
+        row-gap: 2.5rem;
+    }
    
   }
   
