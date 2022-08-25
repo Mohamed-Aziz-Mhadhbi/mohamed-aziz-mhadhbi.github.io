@@ -60,6 +60,10 @@
     .about__box {
         padding: 0.75rem 0.5rem;
     }
+
+    .about__data {
+        text-align: center;
+    }
   }
   
   /* For medium devices */
