@@ -45,3 +45,23 @@
     font-weight: var(--font-medium);
     line-height: 18px;
 }
+
+.skills__level {
+    font-size: var(--tiny-font-size);
+}
+
+/*=================== BREAKPOINTS ======================*/
+/* For large devices */
+  @media screen and (max-width: 992px) {  
+    
+  }
+  
+  /* For medium devices */
+  @media screen and (max-width: 576px) {
+   
+  }
+  
+  /* For small devices */
+  @media screen and (max-width: 350px){
+
+  }
