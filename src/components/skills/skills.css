@@ -39,3 +39,9 @@
     font-size: 1rem;
     color: var(--title-color);
 }
+
+.skills__name {
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-medium);
+    line-height: 18px;
+}
