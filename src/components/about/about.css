@@ -52,6 +52,10 @@
         grid-template-columns: 1rem;
         row-gap: 2.5rem;
     }
+
+    .about__img {
+        width: 220px;
+    }
    
   }
   
