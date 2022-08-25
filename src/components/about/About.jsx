@@ -13,10 +13,10 @@ const About = () => {
         <div className="about__container container grid">
             <img src={AboutImg} alt="" className="about__img"/>
 
-            <div className="about__data"></div>
+            <div className="about__data">
             <Info />
             <p className="about__description">
-            Mobile developer, I create applications with UI / UX user interface, I have years of experience and many clients are happy with the projects carried out.
+            Mobile developer, I create applications with UI/UX user interface, I have years of experience and many clients are happy with the projects carried out.
             </p>
 
             <a download="" href={CV} className="button button--flex">
@@ -47,6 +47,7 @@ const About = () => {
                 ></path>
               </svg>
             </a>
+            </div>
         </div>
     </section>
   )
