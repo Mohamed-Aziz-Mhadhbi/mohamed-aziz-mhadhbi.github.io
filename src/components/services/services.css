@@ -39,9 +39,22 @@
 }
 
 .services__button:hover .services__button-icon {
-    transform: translateY(00.25rem);
+    transform: translateX(00.25rem);
 }
 
 .services__modal {
-    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: var(--z-modal);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rm;
+    opacity: 1;
+    visibility: visible;
+    transition: .3s;
 }
