@@ -107,3 +107,7 @@
     color:var(--title-color);
     font-size:1.1rem;
 }
+
+.services__modal-info {
+    font-size:var(--small-font-size);
+}
