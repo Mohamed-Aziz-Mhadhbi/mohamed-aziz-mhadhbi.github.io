@@ -3,3 +3,7 @@
     justify-content: center;
     column-gap: 1.8rem;
 }
+
+.services__modal {
+    display: none;
+}
