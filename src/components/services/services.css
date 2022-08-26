@@ -38,6 +38,9 @@
     transition: 0.3s;
 }
 
+.services__button:hover .services__button-icon {
+    transform: translateY(00.25rem);
+}
 
 .services__modal {
     display: none;
