@@ -24,6 +24,15 @@
     font-weight: var(--font-medium);
 }
 
+.services__button {
+    color: var(--title-color);
+    font-size: var(--small-font-size);
+    display: inline-flex;
+    align-items: center;
+    column-gap: 0.25rem;
+    cursor: pointer;
+}
+
 .services__modal {
     display: none;
 }
