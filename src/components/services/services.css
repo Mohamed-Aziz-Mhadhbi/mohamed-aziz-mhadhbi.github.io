@@ -11,6 +11,13 @@
     padding: 6rem 0 2rem 2.5rem;
 }
 
+.services__icon {
+    display: block;
+    font-size: 2rem;
+    color: var(--title-color);
+    margin-bottom: var(--mb-1);
+}
+
 .services__modal {
     display: none;
 }
