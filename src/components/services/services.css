@@ -75,3 +75,8 @@
     color:var(--title-color);
     cursor: pointer;
 }
+
+.services__modal-title,
+.services__modal-description {
+    text-align: center;
+}
