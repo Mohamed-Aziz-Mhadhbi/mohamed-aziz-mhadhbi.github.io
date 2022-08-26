@@ -86,3 +86,9 @@
     font-weight: var(--font-medium);
     margin-bottom: var(--mb-1);
 }
+
+.services__modal-description {
+    font-size: var(--small-font-size);
+    padding: 0 3.5rem;
+    margin-bottom: var(--mb-2);
+}
