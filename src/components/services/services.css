@@ -80,3 +80,9 @@
 .services__modal-description {
     text-align: center;
 }
+
+.services__modal-title {
+    font-size: var(--h3-font-size);
+    font-weight: var(--font-medium);
+    margin-bottom: var(--mb-1);
+}
