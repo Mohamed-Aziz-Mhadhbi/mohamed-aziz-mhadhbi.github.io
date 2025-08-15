@@ -1,4 +1,4 @@
-name: React.js CI
+name: React.js CI & Deploy
 
 on:
   push:
@@ -19,5 +19,12 @@ jobs:
           node-version: 16
           cache: 'npm'
 
-      - run: npm i
+      - run: npm ci
       - run: npm run build
+
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
