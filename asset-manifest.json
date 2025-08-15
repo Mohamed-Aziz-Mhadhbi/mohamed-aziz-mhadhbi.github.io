@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e0b6678e.css",
+    "main.js": "/static/js/main.63a83e71.js",
+    "static/media/about.jpg": "/static/media/about.8a4b2eb9d0d394b7284e.jpg",
+    "static/media/profile.jpg": "/static/media/profile.19dd9375a92ca4950761.jpg",
+    "static/media/Mohamed Aziz Mhadhbi.pdf": "/static/media/Mohamed Aziz Mhadhbi.72f75ba72a1096be9e8d.pdf",
+    "static/media/Agustina.21f233e1.woff": "/static/media/Agustina.21f233e1.eb0c59dda4cc308cba96.woff",
+    "index.html": "/index.html",
+    "main.e0b6678e.css.map": "/static/css/main.e0b6678e.css.map",
+    "main.63a83e71.js.map": "/static/js/main.63a83e71.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e0b6678e.css",
+    "static/js/main.63a83e71.js"
+  ]
+}
