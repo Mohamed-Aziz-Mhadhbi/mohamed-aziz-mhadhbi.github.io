@@ -2,7 +2,8 @@ import React from 'react'
 
 const Qualification = () => {
   return (
-    <div>Qualification</div>
+    <section className="contact section" id="contact">    <div>Qualification</div>
+    </section>
   )
 }
 
