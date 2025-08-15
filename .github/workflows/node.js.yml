@@ -30,9 +30,9 @@ jobs:
       # Step 5: Add build folder to the repository (optional)
       - name: Commit build folder
         run: |
-          git config --global user.name "github-actions"
+          git config --global user.name "github-actions" 
           git config --global user.email "github-actions@github.com"
-          git add build
+          git add -f build
           git commit -m "Add build folder" || echo "No changes to commit"
           git push
 
