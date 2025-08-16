@@ -90,10 +90,10 @@ const Portfolio = () => {
                                 <div className="div-block-24">
                                     <div className="text-block-7 _2">
                                         Mohamed Aziz Mhadhbi, <br />
-                                        Mobile Developper
+                                        Mobile Engineer —
                                         <span className="_22-link _2" />
                                         <a href="https://apple.com" target="_blank" rel="noreferrer">
-                                            <span className="_22-link _2">Apple</span>
+                                            <span className="_22-link _2">Turning Ideas into Seamless Apps</span>
                                         </a>
                                     </div>
                                 </div>
