@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import './portfolio.css';
 
 const projects = [
@@ -86,22 +87,21 @@ const ProjectItem = ({ project }) => {
             </div>
             <div data-w-id="e30fc721-3b58-d17e-eeb2-4554dfd40edb" className="_22-videopreviewwrapper w-container">
                 <img src="https://cdn.prod.website-files.com/5c58d24c0c3ff625822bee4b/6265e3642fe049989c180c39_22-closeBtn.svg" loading="lazy" data-w-id="e30fc721-3b58-d17e-eeb2-4554dfd40edc" alt="Close button" className="_22-closepreviewbtn" />
-                <div
+                <motion.div
                     data-w-id="e30fc721-3b58-d17e-eeb2-4554dfd40edd"
                     className="previewframe"
-                    // initial={{ opacity: 0, scale: 0.95 }}
-                    // animate={{ opacity: 1, scale: 1 }}
-                    // transition={{ duration: 0.3 }}
-                    >
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3 }}>
                     <video ref={videoRef} className="video" style={{ objectFit: 'contain', overflow: 'hidden', maxHeight: '81vh', maxWidth: '80vw' }} preload="preload" loop muted playsInline poster={project.poster}>
                         <source src={project.videoSrc} type="video/mp4" />
                     </video>
-                </div>
+                </motion.div>
                 <div data-w-id="e30fc721-3b58-d17e-eeb2-4554dfd40ede"
                     className="popupbg"
-                    // style={{ display: isPopupOpen ? 'block' : 'none' }}
-                    // onClick={() => setIsPopupOpen(false)}
-                    >
+                    style={{ display: isPopupOpen ? 'block' : 'none' }}
+                    onClick={() => setIsPopupOpen(false)}>
+
                     </div>
             </div>
             <div data-w-id="e30fc721-3b58-d17e-eeb2-4554dfd40edf" className="_22-navbuttonblock" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
@@ -113,6 +113,24 @@ const ProjectItem = ({ project }) => {
 };
 
 const Portfolio = () => {
+    useEffect(() => {
+        const WebFont = require('webfontloader');
+        WebFont.load({
+            google: {
+                families: [
+                    'Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic',
+                    'Open Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic',
+                    'Roboto:100,300,regular,500,700,900:greek,latin',
+                ],
+            },
+        });
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { window.dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-141250684-1', { anonymize_ip: false });
+    }, []);
+
     return (
         <>
             <div className="_22-section">
@@ -135,19 +153,19 @@ const Portfolio = () => {
                                     <div className="text-block-7 _2">
                                         Mohamed Aziz Mhadhbi, <br />
                                         mobile engineer{' '}
-                                        <a href="/" target="_blank" className="_22-link _2">
+                                        <a href="https://www.linkedin.com/in/mohamed-aziz-mhadhbi" target="_blank" rel="noreferrer" className="_22-link _2">
                                             Work
                                         </a>
                                     </div>
                                 </div>
                                 <div className="div-block-24 secondary">
-                                    <a href="https://read.cv" target="_blank" className="_22-link secondary">
+                                    <a href="https://read.cv" target="_blank" rel="noreferrer" className="_22-link secondary">
                                         About
                                     </a>
                                     <a href="mailto:mhadhbimohamedaziz94@gmail.com" className="_22-link secondary">
                                         Email
                                     </a>
-                                    <a href="https://www.linkedin.com/in/mohamed-aziz-mhadhbi" target="_blank" className="_22-link secondary">
+                                    <a href="https://www.linkedin.com/in/mohamed-aziz-mhadhbi" target="_blank" rel="noreferrer" className="_22-link secondary">
                                         LinkedIn
                                     </a>
                                 </div>
