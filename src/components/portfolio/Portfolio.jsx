@@ -64,7 +64,7 @@ const ProjectItem = ({ project }) => {
 
     const handleMouseOver = () => {
         if (videoRef.current) {
-            videoRef.current.play();
+            videoRef.current.play().catch(() => { });
         }
     };
 
@@ -102,7 +102,7 @@ const ProjectItem = ({ project }) => {
                     style={{ display: isPopupOpen ? 'block' : 'none' }}
                     onClick={() => setIsPopupOpen(false)}>
 
-                    </div>
+                </div>
             </div>
             <div data-w-id="e30fc721-3b58-d17e-eeb2-4554dfd40edf" className="_22-navbuttonblock" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
                 <div className="_22-navbutton">{project.title}</div>
