@@ -372,64 +372,65 @@ function Portfolio() {
         },
     };
 
-    // Add index to projects
     const indexedProjects = projects.map((project, index) => ({ ...project, index }));
 
     return (
-        <div className="min-h-screen bg-gray-100 bg-gradient-to-br from-blue-50 via-purple-50 to-yellow-50 animate-gradient font-montserrat _22-section">
-            <div className="_22-homemaincolumn container mx-auto px-4 py-8 flex flex-col md:flex-row">
-                <div className="_22-homeleftcolumn md:w-5/12 md:sticky md:top-0 md:max-h-screen overflow-y-auto">
-                    <div className="stickymenu">
-                        <div className="collection-list-wrapper-2">
-                            <div role="list" className="collection-list-3">
-                                <AnimatePresence>
-                                    {indexedProjects.map((project) => (
-                                        <ProjectItem
-                                            key={project.index}
-                                            project={project}
-                                            isDesktop={isDesktop}
-                                            isTablet={isTablet}
-                                            isActive={activeIndex === project.index}
-                                            setActiveIndex={setActiveIndex}
-                                        />
-                                    ))}
-                                </AnimatePresence>
+        <section className="portfolio section" id="portfolios">
+            <div className="min-h-screen bg-gray-100 bg-gradient-to-br from-blue-50 via-purple-50 to-yellow-50 animate-gradient font-montserrat _22-section">
+                <div className="_22-homemaincolumn container mx-auto px-4 py-8 flex flex-col md:flex-row">
+                    <div className="_22-homeleftcolumn md:w-5/12 md:sticky md:top-0 md:max-h-screen overflow-y-auto">
+                        <div className="stickymenu">
+                            <div className="collection-list-wrapper-2">
+                                <div role="list" className="collection-list-3">
+                                    <AnimatePresence>
+                                        {indexedProjects.map((project) => (
+                                            <ProjectItem
+                                                key={project.index}
+                                                project={project}
+                                                isDesktop={isDesktop}
+                                                isTablet={isTablet}
+                                                isActive={activeIndex === project.index}
+                                                setActiveIndex={setActiveIndex}
+                                            />
+                                        ))}
+                                    </AnimatePresence>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <motion.div
-                    className="_22-homerightcolumn md:w-7/12 mt-8 md:mt-0"
-                    initial="hidden"
-                    animate="visible"
-                    variants={profileVariants}
-                    data-w-id="e30fc721-3b58-d17e-eeb2-4554dfd40ee5"
-                >
-                    <div className="div-block-25">
-                        <div className="div-block-24">
-                            <div className="text-block-7">
-                                Mohamed Aziz Mhadhbi, <br />
-                                Mobile {' '}
-                                <a href="https://www.linkedin.com/in/mohamed-aziz-mhadhbi" target="_blank" className="_22-link">
-                                Engineer
+                    <motion.div
+                        className="_22-homerightcolumn md:w-7/12 mt-8 md:mt-0"
+                        initial="hidden"
+                        animate="visible"
+                        variants={profileVariants}
+                        data-w-id="e30fc721-3b58-d17e-eeb2-4554dfd40ee5"
+                    >
+                        <div className="div-block-25">
+                            <div className="div-block-24">
+                                <div className="text-block-7">
+                                    Mohamed Aziz Mhadhbi, <br />
+                                    Mobile {' '}
+                                    <a href="https://www.linkedin.com/in/mohamed-aziz-mhadhbi" target="_blank" className="_22-link">
+                                        Engineer
+                                    </a>
+                                </div>
+                            </div>
+                            <div className="div-block-24 secondary flex space-x-4 mt-4">
+                                <a href="https://read.cv" target="_blank" className="_22-link secondary">
+                                    About
+                                </a>
+                                <a href="mailto:mhadhbimohamedaziz94@gmail.com" className="_22-link secondary">
+                                    Email
+                                </a>
+                                <a href="https://www.linkedin.com/in/mohamed-aziz-mhadhbi" target="_blank" className="_22-link secondary">
+                                    LinkedIn
                                 </a>
                             </div>
                         </div>
-                        <div className="div-block-24 secondary flex space-x-4 mt-4">
-                            <a href="https://read.cv" target="_blank" className="_22-link secondary">
-                                About
-                            </a>
-                            <a href="mailto:mhadhbimohamedaziz94@gmail.com" className="_22-link secondary">
-                                Email
-                            </a>
-                            <a href="https://www.linkedin.com/in/mohamed-aziz-mhadhbi" target="_blank" className="_22-link secondary">
-                                LinkedIn
-                            </a>
-                        </div>
-                    </div>
-                </motion.div>
+                    </motion.div>
+                </div>
             </div>
-        </div>
+        </section>
     );
 }
 
