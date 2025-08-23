@@ -60,23 +60,23 @@ const projects = [
     },
 ];
 
-// VideoPlayer component with enhanced pop-up effect
-const VideoPlayer = ({ src, poster, isDesktop, isTablet, onMouseOver, onMouseOut, onClick, dataWId, isInView }) => {
+const VideoPlayer = ({ src, poster, isDesktop, isTablet, dataWId, isInView, onClose }) => {
     const videoRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
+    const [hasError, setHasError] = useState(false);
 
     useEffect(() => {
         const video = videoRef.current;
         let isMounted = true;
 
         const playVideo = async () => {
-            if (video && isMounted) {
+            if (video && isMounted && !hasError) {
                 try {
                     await video.play();
                     setIsPlaying(true);
                 } catch (error) {
                     console.error('Video play failed:', error);
-                    if (isMounted) setIsPlaying(false);
+                    setHasError(true);
                 }
             }
         };
@@ -84,12 +84,11 @@ const VideoPlayer = ({ src, poster, isDesktop, isTablet, onMouseOver, onMouseOut
         const pauseVideo = () => {
             if (video && isMounted) {
                 video.pause();
-                video.currentTime = 0; // Reset to start
+                video.currentTime = 0;
                 setIsPlaying(false);
             }
         };
 
-        // Play video when in view, pause when out of view
         if (isInView) {
             playVideo();
         } else {
@@ -98,53 +97,30 @@ const VideoPlayer = ({ src, poster, isDesktop, isTablet, onMouseOver, onMouseOut
 
         return () => {
             isMounted = false;
-            if (video) {
-                video.pause();
-            }
+            if (video) video.pause();
         };
-    }, [isInView]);
+    }, [isInView, hasError]);
 
-    const handleMouseOverInternal = () => {
-        if (
-            videoRef.current &&
-            !window.matchMedia('(pointer: coarse)').matches && // Exclude touch devices
-            !isPlaying
-        ) {
-            setIsPlaying(true);
+    const handleInteraction = () => {
+        if (videoRef.current && !hasError) {
+            if (isPlaying) {
+                videoRef.current.pause();
+                setIsPlaying(false);
+            } else {
+                videoRef.current.play().then(() => setIsPlaying(true)).catch(() => setHasError(true));
+            }
         }
-        if (onMouseOver) onMouseOver();
-    };
-
-    const handleMouseOutInternal = () => {
-        if (videoRef.current && isPlaying && !isInView) {
-            setIsPlaying(false);
-        }
-        if (onMouseOut) onMouseOut();
-    };
-
-    const handleClickInternal = () => {
-        if (videoRef.current) {
-            setIsPlaying((prev) => !prev);
-        }
-        if (onClick) onClick();
     };
 
     const videoWrapperVariants = {
         hidden: { opacity: isDesktop || isTablet ? 0 : 1 },
         visible: {
             opacity: 1,
-            transition: {
-                duration: 0.5,
-                ease: [0.4, 0, 0.2, 1],
-                delay: isDesktop || isTablet ? 0.2 : 0,
-            },
+            transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1], delay: isDesktop || isTablet ? 0.2 : 0 },
         },
         popup: {
             opacity: 1,
-            transition: {
-                duration: 0.4,
-                ease: [0.4, 0, 0.2, 1],
-            },
+            transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] },
         },
     };
 
@@ -153,14 +129,10 @@ const VideoPlayer = ({ src, poster, isDesktop, isTablet, onMouseOver, onMouseOut
         visible: {
             opacity: 1,
             scale: 1,
-            transition: {
-                duration: 0.5,
-                ease: [0.4, 0, 0.2, 1],
-                delay: isDesktop || isTablet ? 0.3 : 0,
-            },
+            transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1], delay: isDesktop || isTablet ? 0.3 : 0 },
         },
         popup: {
-            scale: isDesktop ? 1.5 : isTablet ? 1.3 : 1.2, // Larger scale for visibility
+            scale: isDesktop ? 1.5 : isTablet ? 1.3 : 1.2,
             zIndex: 1000,
             position: 'fixed',
             top: '50%',
@@ -169,10 +141,7 @@ const VideoPlayer = ({ src, poster, isDesktop, isTablet, onMouseOver, onMouseOut
             y: '-50%',
             boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
             borderRadius: '10px',
-            transition: {
-                duration: 0.4,
-                ease: [0.4, 0, 0.2, 1],
-            },
+            transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] },
         },
     };
 
@@ -182,37 +151,51 @@ const VideoPlayer = ({ src, poster, isDesktop, isTablet, onMouseOver, onMouseOut
             initial="hidden"
             animate={isInView ? 'popup' : 'visible'}
             variants={videoWrapperVariants}
-            data-w-id="e30fc721-3b58-d17e-eeb2-4554dfd40edb"
+            data-w-id={dataWId + '-wrapper'}
+            role="region"
+            aria-label="Video player"
         >
-            <img
-                src="https://cdn.prod.website-files.com/5c58d24c0c3ff625822bee4b/6265e3642fe049989c180c39_22-closeBtn.svg"
-                alt="Close button"
+            <button
+                onClick={onClose}
                 className={`absolute top-2 right-2 z-10 cursor-pointer _22-closepreviewbtn ${isInView ? '' : 'hidden'}`}
-                data-w-id="e30fc721-3b58-d17e-eeb2-4554dfd40edc"
-            />
+                aria-label="Close video popup"
+                data-w-id={dataWId + '-close'}
+            >
+                <img
+                    src="https://cdn.prod.website-files.com/5c58d24c0c3ff625822bee4b/6265e3642fe049989c180c39_22-closeBtn.svg"
+                    alt="Close button"
+                />
+            </button>
             <motion.div
                 className="relative previewframe"
                 variants={videoFrameVariants}
                 animate={isInView ? 'popup' : 'visible'}
-                onMouseOver={handleMouseOverInternal}
-                onMouseOut={handleMouseOutInternal}
-                onClick={handleClickInternal}
+                onClick={handleInteraction}
                 data-w-id={dataWId}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && handleInteraction()}
+                aria-label={`Play/pause ${isPlaying ? 'pause' : 'play'} video`}
             >
-                <video
-                    ref={videoRef}
-                    className="max-h-[70vh] max-w-[70vw] object-contain video"
-                    preload="preload"
-                    loop
-                    muted
-                    playsInline
-                    poster={poster}
-                >
-                    <source src={src} type="video/mp4" />
-                </video>
+                {hasError ? (
+                    <img src={poster} alt="Video unavailable" className="max-h-[70vh] max-w-[70vw] object-contain" />
+                ) : (
+                    <video
+                        ref={videoRef}
+                        className="max-h-[70vh] max-w-[70vw] object-contain video"
+                        preload="auto"
+                        loop
+                        muted
+                        playsInline
+                        poster={poster}
+                        onError={() => setHasError(true)}
+                    >
+                        <source src={src} type="video/mp4" />
+                    </video>
+                )}
                 <div
                     className={`absolute inset-0 bg-black bg-opacity-50 popupbg ${isInView ? '' : 'hidden'}`}
-                    data-w-id="e30fc721-3b58-d17e-eeb2-4554dfd40ede"
+                    data-w-id={dataWId + '-bg'}
                 ></div>
             </motion.div>
         </motion.div>
@@ -224,51 +207,46 @@ VideoPlayer.propTypes = {
     poster: PropTypes.string,
     isDesktop: PropTypes.bool,
     isTablet: PropTypes.bool,
-    onMouseOver: PropTypes.func,
-    onMouseOut: PropTypes.func,
-    onClick: PropTypes.func,
-    dataWId: PropTypes.string,
+    dataWId: PropTypes.string.isRequired,
     isInView: PropTypes.bool,
+    onClose: PropTypes.func,
 };
 
 VideoPlayer.defaultProps = {
+    poster: '',
     isDesktop: false,
     isTablet: false,
-    poster: '',
-    onMouseOver: null,
-    onMouseOut: null,
-    onClick: null,
-    dataWId: '',
     isInView: false,
+    onClose: () => { },
 };
 
-// ProjectItem component with Intersection Observer
 function ProjectItem({ project, isDesktop, isTablet, isActive, setActiveIndex }) {
     const itemRef = useRef(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
+                console.log(`Project ${project.index} isIntersecting:`, entry.isIntersecting); // Debug
                 if (entry.isIntersecting) {
                     setActiveIndex(project.index);
+                } else if (isActive) {
+                    setActiveIndex(null); // Reset when out of view
                 }
             },
-            {
-                threshold: 0.5, // Trigger when 50% of the item is visible
-                rootMargin: '0px',
-            }
+            { threshold: 0.7, rootMargin: '0px' } // Increased threshold for reliability
         );
 
-        if (itemRef.current) {
-            observer.observe(itemRef.current);
+        const currentRef = itemRef.current;
+        if (currentRef) {
+            observer.observe(currentRef);
         }
 
         return () => {
-            if (itemRef.current) {
-                observer.unobserve(itemRef.current);
+            if (currentRef) {
+                observer.unobserve(currentRef);
             }
         };
-    }, [setActiveIndex, project.index]);
+    }, [setActiveIndex, project.index, isActive]);
 
     const itemVariants = {
         hidden: { opacity: 0, scale: isDesktop || isTablet ? 0.95 : 1, y: 20 },
@@ -279,7 +257,7 @@ function ProjectItem({ project, isDesktop, isTablet, isActive, setActiveIndex })
             transition: {
                 duration: 0.6,
                 ease: [0.4, 0, 0.2, 1],
-                delay: isDesktop || isTablet ? 0.1 : 0,
+                delay: (isDesktop || isTablet ? 0.1 : 0) + project.index * 0.1,
             },
         },
     };
@@ -292,22 +270,24 @@ function ProjectItem({ project, isDesktop, isTablet, isActive, setActiveIndex })
             animate="visible"
             variants={itemVariants}
             data-w-id={project.dataWId}
+            role="listitem"
         >
             <div className="flex items-center pb-6 _22-companyforproject">
                 <img src={project.logo} alt={`${project.company} logo`} className="h-4" />
-                <span className="ml-2 text-sm font-montserrat opacity-100">{project.company}</span>
+                <span className="ml-2 text-sm font-montserrat">{project.company}</span>
             </div>
             <VideoPlayer
                 src={project.videoSrc}
                 poster={project.poster}
                 isDesktop={isDesktop}
                 isTablet={isTablet}
-                dataWId="e30fc721-3b58-d17e-eeb2-4554dfd40edd"
+                dataWId={project.dataWId}
                 isInView={isActive}
+                onClose={() => setActiveIndex(null)}
             />
             <div
                 className="flex justify-between items-center mt-4 cursor-pointer _22-navbuttonblock"
-                data-w-id="e30fc721-3b58-d17e-eeb2-4554dfd40edf"
+                data-w-id={project.dataWId + '-nav'}
             >
                 <div className="_22-navbutton">{project.title}</div>
                 <div className="_22-navbutttonyear">{project.year}</div>
@@ -339,7 +319,6 @@ ProjectItem.defaultProps = {
     isActive: false,
 };
 
-// Portfolio component with active index state
 function Portfolio() {
     const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 992);
     const [isTablet, setIsTablet] = useState(window.innerWidth >= 768 && window.innerWidth <= 991);
@@ -349,7 +328,7 @@ function Portfolio() {
     useEffect(() => {
         const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         setIsTouchDevice(isTouch);
-        document.documentElement.className += isTouch ? ' w-mod-touch' : ' w-mod-js';
+        document.documentElement.classList.add(isTouch ? 'w-mod-touch' : 'w-mod-js');
 
         const handleResize = () => {
             setIsDesktop(window.innerWidth >= 992);
@@ -358,6 +337,10 @@ function Portfolio() {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
+    useEffect(() => {
+        console.log('activeIndex:', activeIndex); // Debug
+    }, [activeIndex]);
 
     const profileVariants = {
         hidden: { opacity: isDesktop || isTablet ? 0 : 1, x: isDesktop || isTablet ? 20 : 0 },
@@ -385,7 +368,7 @@ function Portfolio() {
                                     <AnimatePresence>
                                         {indexedProjects.map((project) => (
                                             <ProjectItem
-                                                key={project.index}
+                                                key={project.dataWId}
                                                 project={project}
                                                 isDesktop={isDesktop}
                                                 isTablet={isTablet}
@@ -404,25 +387,27 @@ function Portfolio() {
                         animate="visible"
                         variants={profileVariants}
                         data-w-id="e30fc721-3b58-d17e-eeb2-4554dfd40ee5"
+                        role="region"
+                        aria-label="Profile section"
                     >
                         <div className="div-block-25">
                             <div className="div-block-24">
                                 <div className="text-block-7">
                                     Mohamed Aziz Mhadhbi, <br />
-                                    Mobile {' '}
-                                    <a href="https://www.linkedin.com/in/mohamed-aziz-mhadhbi" target="_blank" className="_22-link">
+                                    Mobile{' '}
+                                    <a href="https://www.linkedin.com/in/mohamed-aziz-mhadhbi" target="_blank" rel="noopener noreferrer" className="_22-link">
                                         Engineer
                                     </a>
                                 </div>
                             </div>
                             <div className="div-block-24 secondary flex space-x-4 mt-4">
-                                <a href="https://read.cv" target="_blank" className="_22-link secondary">
+                                <a href="https://read.cv" target="_blank" rel="noopener noreferrer" className="_22-link secondary">
                                     About
                                 </a>
                                 <a href="mailto:mhadhbimohamedaziz94@gmail.com" className="_22-link secondary">
                                     Email
                                 </a>
-                                <a href="https://www.linkedin.com/in/mohamed-aziz-mhadhbi" target="_blank" className="_22-link secondary">
+                                <a href="https://www.linkedin.com/in/mohamed-aziz-mhadhbi" target="_blank" rel="noopener noreferrer" className="_22-link secondary">
                                     LinkedIn
                                 </a>
                             </div>
