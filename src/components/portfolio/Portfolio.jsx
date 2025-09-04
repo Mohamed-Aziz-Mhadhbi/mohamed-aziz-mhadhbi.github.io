@@ -10,14 +10,12 @@ const projects = [
     title: "Home BJJ App",
     year: "2024",
     videoSrc: "/videos/HomePrograms.mp4",
-    poster:
-      "https://www.dl.dropboxusercontent.com/s/85io6p4762caep4/BettyPoster3.png",
+    poster: "https://www.dl.dropboxusercontent.com/s/85io6p4762caep4/BettyPoster3.png",
     dataWId: "e30fc721-3b58-d17e-eeb2-4554dfd40eda",
   },
 ];
 
-// ✅ VideoPlayer popup
-const VideoPlayer = ({ src, poster, isInView, onClose, positionClass }) => {
+const VideoPlayer = ({ src, poster, isInView }) => {
   const videoRef = useRef(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -34,19 +32,13 @@ const VideoPlayer = ({ src, poster, isInView, onClose, positionClass }) => {
     <AnimatePresence>
       {isInView && (
         <motion.div
-          className={`w-[220px] h-[440px] rounded-2xl shadow-2xl bg-black overflow-hidden ${positionClass}`}
-          initial={{ opacity: 0, scale: 0.8, x: 20 }}
-          animate={{ opacity: 1, scale: 1, x: 0 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          transition={{ type: "spring", stiffness: 200, damping: 20 }}
+          className="previewframe"
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.5 }}
+          transition={{ type: "spring", stiffness: 250, damping: 22 }}
         >
-          {!isLoaded && (
-            <img
-              src={poster}
-              alt="Loading..."
-              className="w-full h-full object-cover"
-            />
-          )}
+          {!isLoaded && <img src={poster} alt="Video loading" className="video" />}
           <video
             ref={videoRef}
             autoPlay
@@ -54,7 +46,7 @@ const VideoPlayer = ({ src, poster, isInView, onClose, positionClass }) => {
             muted
             playsInline
             onLoadedData={() => setIsLoaded(true)}
-            className="w-full h-full object-cover"
+            className="video"
           >
             <source src={src} type="video/mp4" />
           </video>
@@ -68,58 +60,40 @@ VideoPlayer.propTypes = {
   src: PropTypes.string.isRequired,
   poster: PropTypes.string,
   isInView: PropTypes.bool,
-  onClose: PropTypes.func,
-  positionClass: PropTypes.string,
 };
 
 VideoPlayer.defaultProps = {
   poster: "",
   isInView: false,
-  onClose: () => {},
-  positionClass: "",
 };
 
-// ✅ Each project item
-function ProjectItem({ project }) {
+const ProjectItem = ({ project }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <motion.div
-      className="mb-6 collection-item-4 relative"
-      initial="hidden"
-      animate="visible"
-      role="listitem"
-    >
-      {/* Company */}
-      <div className="flex items-center pb-6 _22-companyforproject">
-        <img src={project.logo} alt={`${project.company} logo`} className="h-4" />
-        <span className="ml-2 text-sm font-montserrat">{project.company}</span>
+    <motion.div className="collection-item-4 relative" role="listitem">
+      <div className="_22-companyforproject">
+        <img src={project.logo} alt={`${project.company} logo`} />
+        <span>{project.company}</span>
       </div>
-
-      {/* Button + Video popup wrapper */}
       <div
         className="relative inline-block"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        {/* The button (stays fixed in place) */}
-        <div className="flex justify-between items-center mt-4 cursor-pointer _22-navbuttonblock relative">
+        <div className="_22-navbuttonblock" data-w-id={project.dataWId}>
           <div className="_22-navbutton">{project.title}</div>
           <div className="_22-navbutttonyear">{project.year}</div>
         </div>
-
-        {/* Video popup (absolute beside the button) */}
         <VideoPlayer
           src={project.videoSrc}
           poster={project.poster}
           isInView={hovered}
-          onClose={() => setHovered(false)}
-          positionClass="absolute top-0 left-full ml-3 z-50"
         />
       </div>
     </motion.div>
   );
-}
+};
 
 ProjectItem.propTypes = {
   project: PropTypes.shape({
@@ -133,34 +107,24 @@ ProjectItem.propTypes = {
   }).isRequired,
 };
 
-// ✅ Portfolio main component
-function Portfolio() {
-  const indexedProjects = projects.map((project, index) => ({
-    ...project,
-    index,
-  }));
-
+const Portfolio = () => {
   return (
     <section className="portfolio section" id="portfolios">
-      <div className="min-h-screen bg-gray-100 bg-gradient-to-br from-blue-50 via-purple-50 to-yellow-50 animate-gradient font-montserrat _22-section">
-        <div className="_22-homemaincolumn container mx-auto px-4 py-8 flex flex-col md:flex-row">
-          <div className="_22-homeleftcolumn md:w-5/12 md:sticky md:top-0 md:max-h-screen overflow-y-auto">
+      <div className="_22-section">
+        <div className="_22-homemaincolumn w-container">
+          <div className="_22-homeleftcolumn w-col w-col-5">
             <div className="stickymenu">
               <div className="collection-list-wrapper-2">
                 <div role="list" className="collection-list-3">
-                  {indexedProjects.map((project) => (
+                  {projects.map((project) => (
                     <ProjectItem key={project.dataWId} project={project} />
                   ))}
                 </div>
               </div>
             </div>
           </div>
-
-          {/* Right column */}
           <motion.div
-            className="_22-homerightcolumn md:w-7/12 mt-8 md:mt-0"
-            initial="hidden"
-            animate="visible"
+            className="_22-homerightcolumn w-col w-col-7"
             role="region"
             aria-label="Profile section"
           >
@@ -179,7 +143,7 @@ function Portfolio() {
                   </a>
                 </div>
               </div>
-              <div className="div-block-24 secondary flex space-x-4 mt-4">
+              <div className="div-block-24 secondary">
                 <a
                   href="https://read.cv"
                   target="_blank"
@@ -209,6 +173,6 @@ function Portfolio() {
       </div>
     </section>
   );
-}
+};
 
 export default Portfolio;
